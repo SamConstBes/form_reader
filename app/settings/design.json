@@ -1,0 +1,29 @@
+{
+    "design": {
+        "rose": {
+            "prod_Name": "rose1",
+            "prod_Photo": "rose.jpg",
+            "prod_Link": "https://t.me/prolivstalina"
+        },
+        "gooo": {
+            "prod_Name": "gooo2",
+            "prod_Photo": "rose.jpg",
+            "prod_Link": "https://t.me/prolivstalina"
+        },
+        "orchid": {
+            "prod_Name": "orchid3",
+            "prod_Photo": "rose.jpg",
+            "prod_Link": "https://t.me/prolivstalina"
+        },
+        "peon": {
+            "prod_Name": "peon4",
+            "prod_Photo": "rose.jpg",
+            "prod_Link": "https://t.me/prolivstalina"
+        },
+        "tulpan": {
+            "prod_Name": "tulpan5",
+            "prod_Photo": "rose.jpg",
+            "prod_Link": "https://t.me/prolivstalina"
+        }
+    }
+}

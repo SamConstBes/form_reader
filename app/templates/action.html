@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Настройки</title>
+    <link rel="stylesheet" href="static/web.css">
+    
+</head>
+<body>
+<div class="container-side">
+    <!-- Сайдбар -->
+   {% include 'includes/nav.html' %}
+    
+    <!-- Основная область контента -->
+    <main>
+        <div id="notification" class="notification">Данные успешно получены!</div>
+        <div class="filter">
+            <div class="filter-part">
+                <h3>Акционные предложения</h3>
+            </div>
+            <div class="filter-part">
+                <h3>Рекламная строка</h3>
+            </div>
+        </div>
+        </div>
+        
+    </main>
+</div>
+<script src="static/js/search.js"></script>
+</body>
+</html>

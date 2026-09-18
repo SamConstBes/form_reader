@@ -1,0 +1,25 @@
+<!-- Dynamic template for input data -->
+<h2>{{ form.formNаme }}</h2>
+    <form action="{{ form.formAction }}" method="post" id="{{ form.formId }}">
+        <table>
+            <thead>
+                <tr>
+                    {% for head_name in form.head %}
+                    <th>{{ head_name }}</th>
+                    {% endfor %}
+                </tr>
+            </thead>
+            <tbody>
+                {% for product_name, product_data in form.tabs.items() %}
+                <tr>
+                    <td><input type="text" name="prodName_{{ product_name }}" value="{{ product_data.prod_Name }}"></td>
+                    <td><input type="text" name="prodPhoto_{{ product_name }}" value="{{ product_data.prod_Photo }}"></td>
+                    <td><input type="text" name="prodPrice_{{ product_name }}" value="{{ product_data.prod_Price }}"></td>
+                    <td><input type="text" name="prodLink_{{ product_name }}" value="{{ product_data.prod_Link|default('') }}"></td>
+                    <td><img src="{{ product_data.prod_Photo|default('') }}" style="width: 50px;"></td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        <button type="submit" onclick="submitForm(event, '{{ form.formId }}' )">{{ form.labelBtn }}</button>
+    </form>

@@ -1,0 +1,40 @@
+{
+    "dostavka": {
+        "0": {
+            "prod_Name": "Роза Эквадор",
+            "prod_Photo": "static/loads/buket-iz-krasnyh-roz-50-sm.png",
+            "prod_Price": "300",
+            "prod_Link": "#"
+        },
+        "1": {
+            "prod_Name": "Роза Нежность",
+            "prod_Photo": "static/loads/flower-free.png",
+            "prod_Price": "350",
+            "prod_Link": "#"
+        },
+        "2": {
+            "prod_Name": "Летний каприз",
+            "prod_Photo": "static/loads/flowers.png",
+            "prod_Price": "300",
+            "prod_Link": "#"
+        },
+        "3": {
+            "prod_Name": "Роза Аделаида",
+            "prod_Photo": "static/loads/buketi-belom.png",
+            "prod_Price": "870",
+            "prod_Link": "#"
+        },
+        "4": {
+            "prod_Name": "Свадебный весенний",
+            "prod_Photo": "static/loads/wedding.png",
+            "prod_Price": "1399",
+            "prod_Link": "#"
+        },
+        "5": {
+            "prod_Name": "Хризантема Даурия",
+            "prod_Photo": "static/loads/autumn-flowers.png",
+            "prod_Price": "200",
+            "prod_Link": "#"
+        }
+    }
+}

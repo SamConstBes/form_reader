@@ -1,0 +1,29 @@
+{
+    "session": {
+        "rose": {
+            "prod_Name": "rose",
+            "prod_Photo": "rose.jpg",
+            "prod_Link": "https://t.me/prolivstalina"
+        },
+        "gooo": {
+            "prod_Name": "gooo",
+            "prod_Photo": "rose.jpg",
+            "prod_Link": "https://t.me/prolivstalina"
+        },
+        "orchid": {
+            "prod_Name": "orchid",
+            "prod_Photo": "rose.jpg",
+            "prod_Link": "https://t.me/prolivstalina"
+        },
+        "peon": {
+            "prod_Name": "peon",
+            "prod_Photo": "rose.jpg",
+            "prod_Link": "https://t.me/prolivstalina"
+        },
+        "tulpan": {
+            "prod_Name": "tulpan",
+            "prod_Photo": "rose.jpg",
+            "prod_Link": "https://t.me/prolivstalina"
+        }
+    }
+}

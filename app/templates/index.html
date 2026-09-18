@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Настройки</title>
+    <link rel="stylesheet" href="static/web.css">
+    
+</head>
+<body>
+<div class="container-side">
+{% include 'includes/nav.html' %}
+    
+    <!-- Основная область контента -->
+    <main>
+        {% with messages = get_flashed_messages() %}
+        {% if messages %}
+            <div class="flash-message" style="padding: 10px; margin: 10px; border: 1px solid green; background: #d4edda;">
+                {% for message in messages %}
+                    <p>{{ message }}</p>
+                {% endfor %}
+            </div>
+        {% endif %}
+        {% endwith %}
+        <div id="notification" class="notification">Данные успешно получены!</div>
+        <div class="tablebox">
+            <h2>Настройки контактов, информации в футере, внешних ссылок</h2>
+            <p>Введите текст Политики конфиденциальности, Пользовательского соглашения в соответствующие поля.</p>
+            <p>Введите заголовки внутри тега h2, подпункты внутри тега h3, текст внутри div или p.</p>
+            <p>Введите ссылки для редактирования на сайте. При отправке пустых значений текущие значения на сайте 
+                перезаписаны не будут.</p>
+        <!-- <label for="docPath">Пользовательское Соглашение</label> -->
+        <!-- <form action="/docPath" method="post" id="soglashenie">
+            <textarea id="docPath" name="docPath" rows="10" cols="100">{{ config.docPath }}</textarea>
+            <button type="submit" style="margin-left: 0px;">Сохранить</button>
+        </form>
+        <label for="/docPolit">Политика конфиденциальности</label>
+        <form action="docPolit" method="post" id="soglashenie">
+            <textarea id="docPolit" name="docPolit" rows="10" cols="100">{{ config.docPath }}</textarea>
+            <button type="submit" style="margin-left: 0px;">Сохранить</button>
+        </form> -->
+        <form action="/docPath" method="post" id="docsForm">
+        <!-- Пользовательское соглашение -->
+            <div class="doc-box">
+                <label for="docPath">Пользовательское Соглашение</label>
+                <textarea name="docPath" rows="10" cols="100">{{ config.docPath }}</textarea>
+            </div>
+            <!-- Политика конфиденциальности -->
+            <div class="doc-box">
+                <label for="docPolit">Политика конфиденциальности</label>
+                <textarea name="docPolit" rows="10" cols="100" >{{ config.docPolit }}</textarea>
+            </div>  
+            <!-- ДВЕ КНОПКИ С РАЗНЫМИ name -->
+            <div class="btn-block">
+                <button type="submit" name="action" value="soglashenie">Сохранить соглашение</button>
+                <button type="submit" name="action" value="politika">Сохранить политику</button>
+            </div>
+            </form>
+        <form action="/social" method="post" id="social">
+            <h3>Внешние ссылки</h3>
+            <div class="settings-content">
+                    <div class="form_group">
+                        <input type="text" name="tgLink" id="tgLink" class="form_input" placeholder="{{ config.dbPassword }}" />
+                        <label for="tgLink" class="form_label">Телеграм</label>
+                    </div>
+                    <div class="form_group">
+                        <input type="text" name="youlaLink" id="youlaLink" class="form_input" placeholder="{{ config.dbPassword }}" />
+                        <label for="youlaLink" class="form_label">Youla</label>
+                    </div>
+                    <div class="form_group">
+                        <input type="text" name="flowLink" id="flowLink" class="form_input" placeholder="{{ config.dbPassword }}" />
+                        <label for="flowLink" class="form_label">Flowoww</label>
+                    </div>
+                    <div class="form_group">
+                        <input type="text" name="avitoLink" id="avitoLink" class="form_input" placeholder="{{ config.dbPassword }}" />
+                        <label for="avitoLink" class="form_label">Avito</label>
+                    </div>
+                    <div class="form_group">
+                        <input type="text" name="vkLink" id="vkLink" class="form_input" placeholder="{{ config.dbPassword }}" />
+                        <label for="vkLink" class="form_label">VK</label>
+                    </div>
+                    <div class="form_group">
+                        <input type="text" name="vkMess" id="vkMess" class="form_input" placeholder="{{ config.dbPassword }}" />
+                        <label for="vkMess" class="form_label">VKMessenger</label>
+                    </div>
+                     <div class="form_group">
+                        <input type="text" name="phone" id="phone" class="form_input" placeholder="{{ config.dbPassword }}" />
+                        <label for="phone" class="form_label">Телефон</label>
+                    </div>
+                <button type="submit" style="margin-left: 0px;">Сохранить</button>   
+                </div>
+        </form>
+
+        </div>
+        <form method="GET" action="/save-settings">
+            <button type="submit" style="margin-left: 0px;">Отправить на сервер</button>
+        </form>
+        
+        
+        <!-- <div class="decor">
+            <img src="/static/images/Group-1.png" alt="">
+        </div> -->
+    </main>
+</div>
+<script src="static/js/search.js"></script>
+</body>
+</html>

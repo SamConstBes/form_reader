@@ -1,0 +1,29 @@
+<!-- Dynamic template for add row data -->
+
+<div class="add-user">
+    <br>
+    <h2>Добавить товар</h2>
+    <br>
+<form action="/add" method="post" id="add">
+    <div class="table-striped">
+        <div class="doc-box">
+            <label>Наименование</label>
+            <input type="text" name="prodNewName" value="" required>
+        </div>
+        <div class="doc-box">
+            <label>Наименование фото</label>
+            <input type="text" name="prodNewPhoto" value="" required>
+        </div>
+        <div class="doc-box">
+            <label>Стоимость</label>
+            <input type="text" name="prodNewPrice" value="" required>
+        </div>
+        <div class="doc-box">
+            <label>Ссылка на товар</label>
+            <input type="text" name="prodNewLink" value="" required>
+        </div>
+    </div>
+    <input type="hidden" name="action_id" value="new">
+    <button type="submit" onclick="submitForm(event, 'add')" style="margin-top: 14px;">Добавить</button>
+</form>
+</div>

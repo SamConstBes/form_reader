@@ -1,0 +1,20 @@
+    <!-- Сайдбар -->
+    <aside>
+        <img src="/static/images/logo.svg" alt="Логотип" class="logo"> <!-- Подставьте путь к вашему изображению -->
+        <nav>
+            <ul>
+                <li class="{% if current_page == 'home' %}active-aside{% endif %}"><a href="/">
+                            <img src="static/images/159619.svg" alt="Логотип" class="menu-logo">Главная</a></li>
+                <li class="{% if current_page == 'products' %}active-aside{% endif %}"><a href="/products">
+                            <img src="/static/images/1332651.png" alt="Логотип" class="menu-logo">Товары</a></li>
+                <li class="{% if current_page == 'blog' %}active-aside{% endif %}"><a href="/blog">
+                            <img src="/static/images/book_14117356.png" alt="Логотип" class="menu-logo">Архив блог</a></li>
+                <li class="{% if current_page == 'catalogue' %}active-aside{% endif %}"><a href="/catalogue">
+                        <img src="/static/images/4697197.png" alt="Логотип" class="menu-logo">Каталог</a></li>
+                <li class="{% if current_page == 'action' %}active-aside{% endif %}"><a href="/action">
+                        <img src="/static/images/4474231.png" alt="Логотип" class="menu-logo">Акции</a></li>
+                <li class="{% if current_page == 'config' %}active-aside{% endif %}"><a href="/config">
+                            <img src="/static/images/4659603.png" alt="Логотип" class="menu-logo">Настройки</a></li>
+            </ul>
+        </nav>
+    </aside>

@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Настройки</title>
+    <link rel="stylesheet" href="static/web.css">
+    
+</head>
+<body>
+<div class="container-side">
+{% include 'includes/nav.html' %}
+    
+    <!-- Основная область контента -->
+    <main>
+        <div id="notification" class="notification">Данные успешно получены!</div>
+
+    <div class="tablebox">
+    <h2>Настройки контента в галереях каталога</h2>
+        <form action="/saveTable" method="post" id="wedding">
+        <h3>Галерея свадебная</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Изображение</th>
+                        <th>Элемент</th>
+                        <th>Наименование фото</th>
+                        <th>Описание</th>
+                        
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for product_name, product_data in result.items() %}
+                    <tr>
+                        <td><img src="{{ product_data.src|default('') }}" style="width: 50px;"></td>
+                        <td><input type="text" name="prodName_{{ product_name }}" value="{{ product_name }}"></td>
+                        <td><input type="text" name="prodPhoto_{{ product_name }}" value="{{ product_data.prod_photo_name }}"></td>
+                        <td><textarea type="text" name="prodLink_{{ product_name }}" rows="5" cols="100" value="{{ product_data.prid_link|default('') }}"></textarea></td>
+                        
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+            <button type="submit" onclick="submitForm(event, 'wedding')">Записать все изменения</button>
+        </form>
+
+        <form action="/saveTable" method="post" id="composition">
+        <table>
+            <h3>Галерея композиции</h3>
+            <thead>
+                <tr>
+                    <th>Изображение</th>
+                    <th>Наименование статьи</th>
+                    <th>Наименование фото</th>
+                    <th>Ссылка на статью</th>
+                    
+                </tr>
+            </thead>
+            <tbody>
+                {% for product_name, product_data in result.items() %}
+                <tr>
+                    <td><img src="{{ product_data.src|default('') }}" style="width: 50px;"></td>
+                    <td><input type="text" name="prodName_{{ product_name }}" value="{{ product_name }}"></td>
+                    <td><input type="text" name="prodPhoto_{{ product_name }}" value="{{ product_data.prod_photo_name }}"></td>
+                    <td><input type="text" name="prodLink_{{ product_name }}" value="{{ product_data.prid_link|default('') }}"></td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        <button type="submit" onclick="submitForm(event, 'composition')">Записать все изменения</button>
+    </form>
+ 
+        <form action="/saveTable" method="post" id="session">
+        <table>
+            <h3>Галерея фотосессии</h3>
+            <thead>
+                <tr>
+                    <th>Изображение</th>
+                    <th>Наименование статьи</th>
+                    <th>Наименование фото</th>
+                    <th>Ссылка на статью</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for product_name, product_data in result.items() %}
+                <tr>
+                    <td><img src="{{ product_data.src|default('') }}" style="width: 50px;"></td>
+                    <td><input type="text" name="prodName_{{ product_name }}" value="{{ product_name }}"></td>
+                    <td><input type="text" name="prodPhoto_{{ product_name }}" value="{{ product_data.prod_photo_name }}"></td>
+                    <td><input type="text" name="prodLink_{{ product_name }}" value="{{ product_data.prid_link|default('') }}"></td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        <button type="submit" onclick="submitForm(event, 'session')">Записать все изменения</button>
+    </form>
+
+    <form action="/saveTable" method="post" id="design">
+        <table>
+            <h3>Галерея мероприятия</h3>
+            <thead>
+                <tr>
+                    <th>Изображение</th>
+                    <th>Элемент</th>
+                    <th>Наименование фото</th>
+                    <th>Ссылка</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for product_name, product_data in result.items() %}
+                <tr>
+                    <td><img src="{{ product_data.src|default('') }}" style="width: 50px;"></td>
+                    <td><input type="text" name="prodName_{{ product_name }}" value="{{ product_name }}"></td>
+                    <td><input type="text" name="prodPhoto_{{ product_name }}" value="{{ product_data.prod_photo_name }}"></td>
+                    <td><input type="hidden" name="prodLink_{{ product_name }}" value="{{ product_data.prid_link|default('') }}"></td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        <button type="submit" onclick="submitForm(event, 'design')">Записать все изменения</button>
+    </form>
+</div>
+<button type="submit" style="margin-top: 20px;">Отправить на сервер</button>
+
+        
+        <!-- <div class="decor">
+            <img src="/static/images/Group-1.png" alt="">
+        </div> -->
+    </main>
+</div>
+<script src="static/js/search.js"></script>
+</body>
+</html>
