@@ -1,7 +1,7 @@
 <!-- Dynamic template for input data -->
 <h2>{{ form.formNаme }}</h2>
     <form action="{{ form.formAction }}" method="post" id="{{ form.formId }}">
-        <table>
+        <table id="dynamic">
             <thead>
                 <tr>
                     {% for head_name in form.head %}
@@ -10,16 +10,18 @@
                 </tr>
             </thead>
             <tbody>
-                {% for product_name, product_data in form.tabs.items() %}
-                <tr>
-                    <td><input type="text" name="prodName_{{ product_name }}" value="{{ product_data.prod_Name }}"></td>
-                    <td><input type="text" name="prodPhoto_{{ product_name }}" value="{{ product_data.prod_Photo }}"></td>
-                    <td><input type="text" name="prodPrice_{{ product_name }}" value="{{ product_data.prod_Price }}"></td>
-                    <td><input type="text" name="prodLink_{{ product_name }}" value="{{ product_data.prod_Link|default('') }}"></td>
-                    <td><img src="{{ product_data.prod_Photo|default('') }}" style="width: 50px;"></td>
-                </tr>
+                {% for product in form.tabs %}
+                {% set outer_index = loop.index0 %}
+                        {% for key, item in product.items() %}
+                            <td><input type="text" name="{{ key }}_{{ outer_index }}" value="{{ item }}"></td>
+                        {% endfor %}
+                        <td><img src="{{ product.prodPhoto|default('') }}" style="width: 50px;"></td>
+                    </tr>
                 {% endfor %}
             </tbody>
         </table>
-        <button type="submit" onclick="submitForm(event, '{{ form.formId }}' )">{{ form.labelBtn }}</button>
+        <div class="btn-block">
+            <button type="submit" onclick="submitForm(event, '{{ form.formId }}' )" title="Сохранить таблицу">{{ form.labelBtn }}</button>
+            <button type="btn" onclick="clearForm(event, '{{ form.formId }}' )">Очистить</button>
+        </div>
     </form>

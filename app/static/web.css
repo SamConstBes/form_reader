@@ -181,7 +181,25 @@
 
         .btn-block{
             display: flex;
-            margin-top: 100px;
+            margin-top: 50px;
+        }
+
+        .head-button {
+            border-radius: 8px;
+            background: var(--unnamed, linear-gradient(135deg, #ca1b47 0%, #072785 100%));
+            display: flex;
+            width: 100px;
+            height: 28px;
+            box-sizing: border-box;
+            padding: 20px;
+            justify-content: center;
+            align-items: center;
+            border: 0;
+            outline: none;
+            font-size: 15px;
+            cursor: pointer;
+            color: #191411;
+            transition: transform 0.3s ease-in-out;
         }
         
         .search-params{

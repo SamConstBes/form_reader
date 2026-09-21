@@ -1,14 +1,16 @@
 #services.py
 import json
+import os
 
 from glob import glob as allglob
 
 def process_data(json_data):
     cmd = json_data['action']
+    del json_data['action']
     match cmd:
         case 'saveTable':
             #--Список товаров-----------
-            save_settings('dostavka', json_data)
+            updateSettings('saveTable', json_data['data'])
             res = 'products'
         case 'composition':
             #--Галерея композиции
@@ -42,8 +44,17 @@ def save_settings(s_name, data):
         json.dump(data_to_save, fp, ensure_ascii=False, indent=4)
 
 
+def updateSettings(cmd_name, data):
+    app_data = load_settings('default-content')
+
+    app_data[cmd_name] = data
+    settings_file = 'default-content'
+    simple_save(settings_file, app_data)
+
+
 def simple_save(cmd_name, data):
-    set_name = f'{cmd_name}.json'
+    """Func for save file in json"""
+    set_name = f'settings/{cmd_name}.json'
     with open(set_name, 'w') as fp:
         json.dump(data, fp, ensure_ascii=False, indent=4)
 
@@ -64,12 +75,12 @@ def process_settings(action, data):
     """Save socials, policy, terms from main page.
     Empty values don`t change default table"""
     #--Cохранить ссылки и телефон
+    data_to_save = None
     cmd_name = action
     set_name = f'settings/{cmd_name}.json'
     match cmd_name:
-        case 'social':
+        case 'hrefs':
             data_to_save = {
-                "hrefs": {
                     "telega": data.tgLink,
                     "avito": data.avitoLink,
                     "flowwow": data.flowLink,
@@ -77,13 +88,12 @@ def process_settings(action, data):
                     "vk": data. vkLink,
                     "yula": data.youlaLink,
                     "phone": data.phone
-                }}
+                }
         case 'soglashenie':
-            data_to_save = {cmd_name : [data.docText]}
+            data_to_save = [data.docText]
         case 'politika':
-            data_to_save = {cmd_name: [data.docText]}
-    with open(set_name, 'w', encoding='utf-8') as fp:
-        json.dump(data_to_save, fp, ensure_ascii=False, indent=4)
+            data_to_save = [data.docText]
+    updateSettings(cmd_name, data_to_save)
 
 
 def save_all_json():
@@ -106,3 +116,9 @@ def load_settings(name):
     with open(f'settings/{name}.json', 'r', encoding='utf-8') as file:
         data = json.load(file)
     return data
+
+def load_file(upload_path, file, filename):
+    save_path = os.path.join(upload_path, filename)
+    file.save(save_path)
+    relative_path = f'static/loads/{filename}'
+    return relative_path
