@@ -1,0 +1,21 @@
+<!-- Dynamic template for input obj -->
+ <!-- Шаблон дляформирования метаданных нового объекта -->
+<h2>{{ form.formNаme }}</h2>
+    <form action="{{ form.formAction }}" method="post" id="{{ form.formId }}">
+        <table>
+            <thead>
+                <tr>
+                    {% for  key, _ in form.items() %}
+                    <th>{{ key }}</th>
+                    {% endfor %}
+                </tr>
+            </thead>
+            <tbody>
+                {% for  key, tab_item in form.items() %}
+                {% set outer_index = loop.index0 %}
+                        <td><input type="text" name="{{ key }}_item{{ outer_index }}" value="{{ tab_item  }}"></td>
+                {% endfor %}
+            </tbody>
+        </table>
+        <button type="submit" onclick="submitForm(event, '{{ form.formId }}' )">{{ form.labelBtn }}</button>
+    </form>

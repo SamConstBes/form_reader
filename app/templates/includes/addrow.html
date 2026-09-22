@@ -1,0 +1,18 @@
+<!-- Dynamic template for add row data -->
+
+<div class="add-user">
+    <br>
+    <h2>{{ row.objname }}</h2>
+    <form action="{{ row.action }}" method="post" id="{{ row.id }}">
+        <div class="table-striped">
+        {% for key, val in row.inputs.items() %}
+            <div class="doc-box">
+                <label>{{ key }}</label>
+                <input type="{{ row.fields[val]['type'] }}" name="{{ val }}" value="" required>
+                </div>
+        {% endfor %}
+        </div>
+        <input type="hidden" name="action_id" value="new">
+        <button type="button" onclick="getDynamicForm(event, '{{ row.id }}')" style="margin-top: 14px;">Добавить</button>
+    </form>
+</div>

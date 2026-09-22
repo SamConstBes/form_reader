@@ -1,0 +1,60 @@
+<div class="filter-part">
+        <h3>Настройки подключения</h3>
+        <div class="table-content">
+            <form action="config" method="post">
+                <!-- <label for="dbName">База данных:</label> -->
+                <div class="settings-content">
+                    <!-- <textarea id="dbName" name="dbName" rows="2" cols="80">{{ config.dbName }}</textarea> -->
+                    <div class="form_group">
+                        <input type="text" id="dbName" class="form_input" placeholder=" " />
+                        <label for="dbName" class="form_label">База_данных</label>
+                    </div>
+                </div>
+                <!-- <label for="dbUser">Пользователь</label><br> -->
+                <div class="settings-content">
+                    <!-- <textarea id="dbUser" name="dbUser" rows="2" cols="80">{{ config.dbUser }}</textarea> -->
+                    <div class="form_group">
+                        <input type="text" id="dbUser" class="form_input" placeholder=" " />
+                        <label for="dbUser" class="form_label">Пользователь</label>
+                    </div>
+                  
+                </div>
+                <!-- <label for="dbPassword">Пароль</label><br> -->
+                <div class="settings-content">
+                    <!-- <textarea id="dbPassword" name="dbPassword" rows="2" cols="80">{{ config.dbPassword }}</textarea> -->
+                    <div class="form_group">
+                        <input type="text" id="dbPassword" class="form_input" placeholder="{{ config.dbPassword }}"/>
+                        <label for="dbPassword" class="form_label">Пароль</label>
+                    </div>
+                  
+                </div>
+                <!-- <label for="dbPort">Порт</label><br> -->
+                <div class="settings-content">
+                    <!-- <textarea id="dbPort" name="dbPort" rows="2" cols="80">{{ config.dbPort }}</textarea> -->
+                    <div class="form_group">
+                        <input type="text" id="dbPort" class="form_input" placeholder="{{ config.dbPassword }}" />
+                        <label for="dbPort" class="form_label">Порт</label>
+                    </div>
+                   
+                </div>
+                <!-- <label for="dbHost">Хост</label><br> -->
+                <div class="settings-content">
+                    <div class="form_group">
+                        <input type="text" id="dbHost" class="form_input" placeholder=" " />
+                        <label for="dbHost" class="form_label">Хост</label>
+                    </div>
+                    <!-- <textarea id="dbHost" name="dbHost" rows="2" cols="80">{{ config.dbHost }}</textarea> -->
+                    
+                </div>
+                <!-- <label for="dbHost">Документы</label><br> -->
+                <div class="settings-content">
+                    <!-- <textarea id="docPath" name="docPath" rows="2" cols="80">{{ config.docPath }}</textarea> -->
+                    <div class="form_group">
+                        <input type="text" id="trackName" class="form_input" placeholder=" " />
+                        <label for="trackName" class="form_label">Документы</label>
+                    </div>
+                </div>
+               <button type="submit" style="margin-left: 0px;">Сохранить</button>
+            </form>
+        </div>
+    </div>

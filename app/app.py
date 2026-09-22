@@ -1,19 +1,20 @@
-from traceback import format_stack
-
 from flask import Flask, request, redirect, flash, render_template, jsonify, send_from_directory, url_for, g, session, current_app
 from werkzeug.utils import secure_filename
 
-from .testing import result, raw_data, raw_, row_config, obj_config, FIELD_CONFIG
 from .models import *
-from .services import process_data, process_settings, save_all_json, load_settings, load_file
+from .services import process_data, process_settings, load_settings, load_file
+from config import app_config, row_config, obj_config, logger, form_data, FIELD_CONFIG, PAGE_CONFIGS
 
-app = Flask(__name__)
+from .testing import result, raw_data
+
+app = Flask(__name__, instance_relative_config=False)
 
 app.secret_key = 'my_super_secret_key_123'
-data = content = {}
 app.config['IS_UPDATE'] = load_settings('default-content')
 app.config['DATA'] = load_settings('default-settings')
-app.config['UPLOAD_FOLDER'] = '/home/konst/snake/form_reader/app/static/loads'
+app.config['UPLOAD_FOLDER'] = app_config.UPLOAD_FOLDER
+
+data = content = {}
 
 
 @app.before_request
@@ -29,7 +30,7 @@ def before_request():
 def main_page():
     is_updating = session.get('is_updating', False)
     data = current_app.config['IS_UPDATE'] if is_updating else current_app.config['DATA']
-    return render_template('index.html', config=data, current_page='home')
+    return render_template('index.html',current_page='home', config=data)
 
 
 @app.route('/products', methods=['GET'])
@@ -38,21 +39,12 @@ def prod_page():
     value = current_app.config['IS_UPDATE'].get('saveTable')
 
     prod_data = value if is_updating else current_app.config['DATA'].get('dostavka') 
-
-    form_data = {
-        "formNаme": "Настройки таблицы товаров",
-        "formAction": "/saveTable",
-        "formId": "saveTable",
-        "labelBtn": "Сохранить данные",
-        "fields": FIELD_CONFIG,
-        "head":["Товар", "Стоимость", "Ссылка", "Фото", "Изображение"],
-        "tabs": prod_data
-    }
-    
-    # print("Тип элемента:", type(result[1]))  # dict, Row, namedtuple?
-    # print("Ключи:", result[1].keys() if hasattr(result[1], 'keys') else dir(result[1]))
-    # print("prod_price:", result[1].get('prod_price', 'НЕТ КЛЮЧА') if isinstance(result[1], dict) else result[1].prod_price)
-    return render_template('products.html', current_page='products', result = prod_data, form = form_data, row=row_config)
+    form_data["head"] = PAGE_CONFIGS.get("products").get("head")
+    form_data["formNаme"] = PAGE_CONFIGS.get("products").get("formNаme")
+    form_data["formAction"] = PAGE_CONFIGS.get("products").get("formAction")
+    form_data["tabs"] =  prod_data
+ 
+    return render_template('products.html', current_page='products', result=prod_data, form=form_data, row=row_config)
 
 
 @app.route('/config', methods=['GET'])
@@ -65,22 +57,22 @@ def config_page():
         "head":["name", "text", "link", "photo"],
         "tabs": result
     }
-    return render_template('config.html', current_page='config', forms=raw_ , row=obj_config)
+    return render_template('config.html', current_page='config', forms=[], row=obj_config)
 
 
 @app.route('/catalogue', methods=['GET'])
 def cat_page():
-    return render_template('catalogue.html', forms=raw_data, current_page='catalogue')
+    return render_template('catalogue.html', current_page='catalogue', forms=raw_data)
 
 
 @app.route('/blog', methods=['GET'])
 def blog_page():
-    return render_template('blog.html', result = result, current_page='blog')
+    return render_template('blog.html', current_page='blog', result=result)
 
 
 @app.route('/action', methods=['GET'])
 def act_page():
-    return render_template('action.html', result = result, current_page='action')
+    return render_template('action.html', current_page='action', result=result)
 
 
 @app.route('/favicon.ico')
@@ -90,7 +82,6 @@ def favicon():
 
 @app.route('/social', methods=['POST'])
 def save_social():
-    """Endpoint for saving social links"""
     tgLink = request.form.get('tgLink', '')
     youlaLink = request.form.get('youlaLink', '')
     flowLink = request.form.get('flowLink', '')
@@ -102,12 +93,16 @@ def save_social():
     social = Social(tgLink, youlaLink, flowLink, avitoLink, vkLink, vkMess, phone)
     try:
         process_settings('hrefs', social)
-        flash('Социальные ссылки сохранены!')
-        app.config['IS_UPDATE'] = load_settings('default-content')
+        # Обновляем состояние перед редиректом
         session['is_updating'] = True
+        app.config['IS_UPDATE'] = load_settings('default-content')
+        logger.info("Success to save social links")
+        flash('Социальные ссылки сохранены!')
     except Exception as error:
-        flash('Ошибка при сохранении социальных ссылок!')
-        print('Error in save social', str(error))
+        logger.error("Failed to save social links: %", error)
+        flash('Ошибка при сохранении социальных ссылок!', 'error')
+        return redirect(url_for('main_page'))
+        
     return redirect(url_for('main_page'))
 
 
@@ -160,7 +155,7 @@ def save_products():
         session['is_updating'] = True
         return render_template(f'{template}.html', result = res, form = form_data, row=row_config)
     except Exception as error:
-        print(str(error))
+        logger.error("Failed to save products: %", error)
 
 
 @app.route('/uploadFile', methods=['POST'])
@@ -196,7 +191,7 @@ def add_data():
 
 @app.route('/save-settings')
 def save_json():
-    res = save_all_json()
+    res  = False
     flash('Данные отправлены!') if res else flash('Ошибка отправки данных!')
     
     return redirect(url_for('main_page'))

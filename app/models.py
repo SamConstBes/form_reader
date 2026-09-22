@@ -6,7 +6,6 @@ class ProcessData:
         self.val2 = val2
         self.val3 = val3
 
-
 class Social:
     def __init__(self, tgLink=None, youlaLink=None, flowLink=None, avitoLink=None, vkLink=None, vkMess=None, phone=None):
         self.tgLink = tgLink
@@ -16,7 +15,6 @@ class Social:
         self.vkLink = vkLink
         self.vkMess = vkMess
         self.phone = phone
-
 
 class DockPath:
     def __init__(self, docText=None):

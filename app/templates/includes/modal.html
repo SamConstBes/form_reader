@@ -1,0 +1,15 @@
+<!-- Dynamic template for comment -->
+<div id="commentModal" class="commentModal">
+    <div class="modal-content">
+        <h2>Комментарий:</h2>
+        <div id="commentText"></div><br>
+        <textarea id="commentInput" rows="15"></textarea><br>
+        <div class="btn-alone">
+            <button style="margin-left: 15px;" onclick="closeModal()">Закрыть</button>
+        </div>
+        <div class="btn-block">
+            <button onclick="sendComment()">Отправить</button>
+            <button style="margin-left: 15px;" onclick="closeModal()">Закрыть</button>
+        </div>
+    </div>
+</div>

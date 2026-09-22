@@ -1,0 +1,22 @@
+{# _macros.html #}
+{% macro render_field(name, config, value) %}
+    <div class="form-group">
+        <label for="{{ name }}">{{ config.label }}</label>
+        
+        {% if config.type == 'textarea' %}
+            <textarea id="{{ name }}" name="{{ name }}" class="form-control" rows="4">{{ value }}</textarea>
+        
+        {% elif config.type == 'file' %}
+            {# Важно: если текущее значение существует, показываем превью #}
+            {% if value %}
+                <img src="{{ value }}" alt="preview" style="max-width: 200px; max-height: 200px; display: block; margin-bottom: 10px;">
+            {% endif %}
+            <input type="file" id="{{ name }}" name="{{ name }}" class="form-control">
+            <small class="form-text text-muted">Оставьте пустым, чтобы не менять текущий файл.</small>
+        
+        {% else %}
+            {# По умолчанию обычный текстовый инпут #}
+            <input type="text" id="{{ name }}" name="{{ name }}" class="form-control" value="{{ value|default('') }}">
+        {% endif %}
+    </div>
+{% endmacro %}
