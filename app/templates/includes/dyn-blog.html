@@ -1,0 +1,20 @@
+<!-- Dynamic template for blog items(list) -->
+<h2>Настройки блога</h2>
+    <form action="11" method="post" id="11">
+     
+            {% for form in forms %}
+            {% set outer_index = loop.index0 %}
+                <div class="blog-item" id="{{form.id}}">
+                    <div class="left-side">
+                        <div class="item-article">{{ item.title }}</div>
+                        <img src="{{ form.photo|default('') }}" style="width: 50px;">
+                    </div>
+                    <div class="right-side">
+                        <input type="textarea" name="" id="{{form.id}}" cols="10">{{form.text}}</textarea>
+                        <button type="button" onclick="submitForm(event, '{{ form.id }}' )">Изменить</button>
+                    </div>
+                </div>
+            {% endfor %}
+        
+        <button type="submit" onclick="submitForm(event, 'send' )">ОТПРАВИТЬ</button>
+    </form>

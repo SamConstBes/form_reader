@@ -106,14 +106,16 @@ async function showModal(event, check) {
     const modal = document.querySelector('.commentModal')
     modal.style.display = 'block';
     switch (check){
-        case 'products':
+        case 'help':
+            modal.querySelector('#modalTitle').innerHTML = 'Подсказка';
             modal.querySelector('.btn-block').style.display = 'none';
             modal.querySelector('#commentInput').style.display = 'none';
             modal.querySelector('#commentText').innerHTML = 'Listening at: http://0.0.0.0:5000 (70303)';
             break;
-        case 'index':
+        case 'input':
+            modal.querySelector('#modalTitle').innerHTML = '';
             modal.querySelector('.btn-alone').style.display = 'none';
-            modal.querySelector('#commentText').innerHTML = 'Введите комментария для отправки';
+            modal.querySelector('#commentText').innerHTML = 'Введите текст';
             break;
         default:
             break;
@@ -122,7 +124,11 @@ async function showModal(event, check) {
 
 // Close modal window
 function closeModal() {
-    document.getElementById("commentModal").style.display = "none";
+    const modal = document.querySelector('.commentModal')
+    modal.querySelector('#commentInput').style.display = 'block';
+    modal.querySelector('.btn-alone').style.display = 'block';
+    modal.querySelector('.btn-block').style.display = 'flex';
+    modal.style.display = "none";
 }
 
 // Submit/Send data to server
@@ -195,6 +201,24 @@ if (backBtn !== null) {
     });
 }
 
+
+const fileInput = document.getElementById("art-img");
+const fileInfo = document.getElementById('file-info');
+const inputBtn = document.getElementById('inputText');
+
+if (fileInput) {
+    fileInput.addEventListener('change', function(){
+        if (this.files.length > 0){
+            fileInfo.textContent = this.files[0].name;
+        }
+    })
+};
+
+if (inputBtn) {
+    inputBtn.addEventListener('click', function(event){
+        event.preventDefault();
+        showModal(event, 'input')})
+};
 // // Проверяем, было ли перенаправление успешным
 // const notification = document.getElementById('notification');
 

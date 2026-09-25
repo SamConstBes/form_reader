@@ -43,10 +43,10 @@
 
     button:hover {
         background: var(--unnamed, linear-gradient(135deg, #0c0247 0%, #38020b 100%));
-    border: 2px solid #5a0325;
-    color: #FFF;
-    box-shadow: 5px 5px 5px rgba(11, 25, 104, 0.8), 0 6px 20px rgba(0, 0, 0, 0.1);
-    transform: scale(1.05);
+        border: 2px solid #5a0325;
+        color: #FFF;
+        box-shadow: 5px 5px 5px rgba(11, 25, 104, 0.8), 0 6px 20px rgba(0, 0, 0, 0.1);
+        transform: scale(1.03);
     }
 
     form {
@@ -186,9 +186,9 @@
 
         .head-button {
             border-radius: 8px;
-            background: var(--unnamed, linear-gradient(135deg, #ca1b47 0%, #072785 100%));
+            background: var(--unnamed, linear-gradient(135deg, #e7406a 0%, #3f68e1 100%));
             display: flex;
-            width: 100px;
+            width: 120px;
             height: 28px;
             box-sizing: border-box;
             padding: 20px;
@@ -199,7 +199,17 @@
             font-size: 15px;
             cursor: pointer;
             color: #191411;
-            transition: transform 0.3s ease-in-out;
+            transform-origin: center;
+            transition: transform 0.7s ease-in-out;
+            margin-bottom: 10px;
+        }
+
+        .head-button:hover {
+            background: var(--unnamed, linear-gradient(135deg, #2605e5 0%, #912f3f 100%));
+            border: 2px solid #5a0325;
+            color: #FFF;
+            box-shadow: 5px 5px 5px rgba(11, 25, 104, 0.8), 0 6px 20px rgba(0, 0, 0, 0.1);
+            transform: scale(1.01);
         }
         
         .search-params{
@@ -542,4 +552,36 @@
     display: flex;
     flex-direction: column;
     margin-left: 10px;
+ }
+
+ .item-all {
+    display: flex;
+    padding: 1%;
+    justify-content: space-around;
+    border:#5a0325 1px solid;
+    width: 90%;
+    margin-bottom: 5px;
+    box-sizing: border-box;
+ }
+
+ .left-side, 
+ .right-side {
+    display: flex;
+    flex-direction: column;
+ }
+
+ .left-side img {
+    width: 100px;
+ }
+
+ .item-all textarea {
+    margin-bottom: 5px;
+    width: 100%;
+    border:#050831 1px solid;
+    border-radius: 5px;
+ }
+
+ .button-wrapper {
+    width: 130px;
+    height: 40px;
  }

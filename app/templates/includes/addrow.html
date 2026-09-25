@@ -8,7 +8,7 @@
         {% for key, val in row.inputs.items() %}
             <div class="doc-box">
                 <label>{{ key }}</label>
-                <input type="{{ row.fields[val]['type'] }}" name="{{ val }}" value="" required>
+                <input type="{{ row.fields[val]['type'] }}" id="{{ val }}" name="{{ val }}" value="" class="{{ val }}" {{ row.fields[val]['isRequired'] }}>
                 </div>
         {% endfor %}
         </div>

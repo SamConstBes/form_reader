@@ -2,7 +2,7 @@
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
-    <title>Настройки</title>
+    <title>Товары</title>
     <link rel="stylesheet" href="static/web.css">
 </head>
     <body>
@@ -12,7 +12,7 @@
         <main>
             <div id="notification" class="notification">Данные успешно получены!</div>
             {% include 'includes/form.html' %}
-            <button type="button" class="head-button" onclick="showModal(event, 'products')">Справка</button>
+            <button type="button" class="head-button" onclick="showModal(event, 'input')">Справка</button>
             <div class="tablebox">
                 {% include 'includes/addrow.html' %}
                 <button type="submit" style="margin-top: 20px;" title="Отправить данные по сети">Отправить</button>

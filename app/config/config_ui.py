@@ -2,10 +2,11 @@
 
 #---Настройка типов полей---
 FIELD_CONFIG = { 
-    "prodName": {"type": "text", "label": "Название"},
+    "prodName": {"type": "text", "label": "Название", "isRequired":"required"},
     "prodPrice": {"type": "text", "label": "Фото"},
     "prodPhoto": {"type": "file", "label": "Фото"},
-    "prodLink": {"type": "textarea", "label": "Описание"} 
+    "prodLink": {"type": "textarea", "label": "Описание"},
+    "inputText": {"type": "Button", "label": "Текст"} 
     }
 
 #---Настройка формы добавления товара---
@@ -27,12 +28,13 @@ obj_config = {
     "objname": "Добавить объект",
     "action": "/add",
     "id": "add",
+    "fields": FIELD_CONFIG,
     "inputs":{
-    "наименование": "prodNewName", 
-    "эндпойнт": "prodNewPhoto",
-    "эндпойнт2": "prodNewPhoto2",
-    "путь": "prodNewPrice",
-    "Заголовки": ["Блок","путь", "ссылка"] 
+    "наименование": "prodName", 
+    "эндпойнт": "prodPhoto",
+    "эндпойнт2": "prodPhoto",
+    "путь": "prodPrice",
+    # "Заголовки": ["Блок","путь", "ссылка"] 
     }
 }
 
@@ -53,4 +55,16 @@ PAGE_CONFIGS = {
             "head":["Товар", "Стоимость", "Ссылка", "Фото", "Изображение"],
             },
     "content": {}
+}
+
+blog_config = {
+    "objname": "Добавить блог",
+    "action": "/addBlog",
+    "id": "add",
+    "fields": FIELD_CONFIG,
+    "inputs":{
+    "ЗАГОЛОВОК": "prodName",
+    "ТЕКСТ": "inputText", 
+    "ФОТО": "prodPhoto",
+    }
 }

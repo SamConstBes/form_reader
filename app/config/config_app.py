@@ -17,7 +17,7 @@ class SFTPConfig:
 
 @dataclass(frozen=True)
 class AppConfig:
-    UPLOAD_FOLDER = os.get_env("UPLOAD_FOLDER")
+    UPLOAD_FOLDER = os.getenv("UPLOAD_FOLDER")
     sftp: SFTPConfig = SFTPConfig (
         host=os.getenv("SFTP_HOST", "127.0.0.1"),
         port=int(os.getenv("SFTP_PORT", 5432)),

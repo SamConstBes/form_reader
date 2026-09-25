@@ -3,7 +3,7 @@ from pathlib import Path
 
 
 LOG_PATH = Path(__file__).parent.parent / "logs" / "app.log"
-Path(LOG_PATH).mkdir(exist_ok=True)
+Path(LOG_PATH).parent.mkdir(parents=True, exist_ok=True)
 
 LOGGING_CONFIG = {
     'version': 1,
