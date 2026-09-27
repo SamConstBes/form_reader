@@ -99,8 +99,8 @@ def blog_page():
             "name": "Фестиваль тюльпанов",
             "text": '\n'.join(text),
             "photo": "static/loads/flowers.png"},
-            {"id": "item1",
-            "name": "Фестиваль тюльпанов",
+            {"id": "item2",
+            "name": "Фестиваль",
             "text": '\n'.join(text),
             "photo": "static/loads/flowers.png"}
             ]
@@ -219,7 +219,7 @@ def add_data():
         print("Received JSON data:", json_data)
     except Exception as error:
         print(str(error))
-
+    flash('Данные отправлены!')
     return jsonify({
             "status": "success",
             "received_data": json_data

@@ -10,14 +10,14 @@
                 <input type="text" id="title" value="{{element.name}}">
             </div>
             <label for="art-img">
-            <img src="{{element.photo}}" alt="" class="blog-img"></label>
+            <img src="{{element.photo}}" alt="" id="photo" class="blog-img"></label>
             <span id="file-info"></span>
             <input type="file" id="art-img"style="display:none"> 
         </div>
         <div class="right-side">
-            <textarea cols="100"rows="15" name="text_{{ outer_index }}" value="">{{ element.text }}</textarea>
+            <textarea cols="100"rows="15" id="textcontent" value="">{{ element.text }}</textarea>
             <div class="button-wrapper">
-                <button type="button" class="head-button" onclick="showModal(event, 'products')">Сохранить</button>
+                <button type="button" class="head-button" onclick="saveLocal(event, '{{ element.id }}')">Сохранить</button>
             </div>
         </div>
     </div>

@@ -7,9 +7,13 @@
         <div class="table-striped">
         {% for key, val in row.inputs.items() %}
             <div class="doc-box">
+                {% if row.fields[val]['type'] != 'img' %}
                 <label>{{ key }}</label>
                 <input type="{{ row.fields[val]['type'] }}" id="{{ val }}" name="{{ val }}" value="" class="{{ val }}" {{ row.fields[val]['isRequired'] }}>
-                </div>
+                {% elif row.fields[val]['type'] == 'img' %}
+                <img src="" alt="" class="blog-img">
+                {% endif %}
+            </div>
         {% endfor %}
         </div>
         <input type="hidden" name="action_id" value="new">

@@ -6,7 +6,8 @@ FIELD_CONFIG = {
     "prodPrice": {"type": "text", "label": "Фото"},
     "prodPhoto": {"type": "file", "label": "Фото"},
     "prodLink": {"type": "textarea", "label": "Описание"},
-    "inputText": {"type": "Button", "label": "Текст"} 
+    "inputText": {"type": "Button", "label": "Текст"},
+    "inputImg" :{"type": "img", "label": "Превью"}
     }
 
 #---Настройка формы добавления товара---
@@ -66,5 +67,6 @@ blog_config = {
     "ЗАГОЛОВОК": "prodName",
     "ТЕКСТ": "inputText", 
     "ФОТО": "prodPhoto",
+    "Превью": "inputImg"
     }
 }

@@ -10,6 +10,18 @@ if (window.location.pathname === '/products') {
     });
 }
 
+if (window.location.pathname === '/blog') {
+    document.addEventListener("DOMContentLoaded", function() {
+        const result = {};
+        let items = document.querySelectorAll('.item-all');
+        items.forEach(item => {
+            const blogId = item.getAttribute('id');
+            result[blogId] = getBlogData(item);
+        })
+        localStorage.setItem("blog",  JSON.stringify(result));
+    });
+}
+
 // Record data
 function initResults(data) {
     rawResults = data;
@@ -219,6 +231,57 @@ if (inputBtn) {
         event.preventDefault();
         showModal(event, 'input')})
 };
+
+// Func for update blogs in local storage
+async function saveLocal(event, id) {
+    const result = {};
+    const currentBlog = JSON.parse(localStorage.getItem('blog'));
+    const item = document.querySelector(`#${id}`);
+    result[id] = getBlogData(item);
+    Object.assign(currentBlog, result);
+    updateCard(result[id], id);
+    await submitCustom(event, currentBlog);
+    localStorage.getItem('blog', JSON.stringify(currentBlog));
+};
+
+// Func for get blog data from div
+function getBlogData(item) {
+    const itemObj = {};
+    itemObj['title'] = item.querySelector('#title').value;
+    itemObj['photo'] = item.querySelector('img').src;
+    itemObj['textcontent'] = item.querySelector('#textcontent').value;
+    return itemObj;
+}
+
+// Func for update blog card
+function updateCard(item, id) {
+    const card = document.getElementById(id);
+    Object.keys(item).forEach(key => {
+        if (key !== 'photo') {
+            card.querySelector(`#${key}`).value = item[key];
+        } else {
+            card.querySelector(`#${key}`).src = item[key];
+        }
+    })
+
+}
+
+async function submitCustom(event, payload) {
+    event.preventDefault();
+    try {
+        const response = await fetch('/add',{
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({action: '', data: payload})
+        });
+        if (!response.ok) {
+            throw new Error(`Ошибка сети: ${response.status}, ${response.statusText}`);
+        }
+        // window.location.reload();  
+        } catch (err) { throw new Error(`Ошибка сервера: ${response.status}`);}
+}
 // // Проверяем, было ли перенаправление успешным
 // const notification = document.getElementById('notification');
 
